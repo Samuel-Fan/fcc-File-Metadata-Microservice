@@ -14,8 +14,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/api/fileanalyse', upload.single('upfile') ,(req, res) => {
-
-  res.json({name: req.file.fieldname, type: req.file.mimetype, size: req.file.size });
+  const originalname = Buffer.from(req.file.originalname, 'latin1').toString('utf8');
+  res.json({name: originalname, type: req.file.mimetype, size: req.file.size });
 })
 
 const port = process.env.PORT || 3000;
